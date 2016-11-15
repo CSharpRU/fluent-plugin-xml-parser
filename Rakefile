@@ -16,11 +16,11 @@ require 'jeweler'
 
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = 'fluent-plugin-xml-simple-parser'
-  gem.homepage = 'https://github.com/CSharpRU/fluent-plugin-xml-simple-parser'
+  gem.name = 'fluent-plugin-xml-simple-filter'
+  gem.homepage = 'https://github.com/CSharpRU/fluent-plugin-xml-simple-filter'
   gem.license = 'BSD-3-Clause'
-  gem.summary = 'Fluent parser for XML'
-  gem.description = 'Fluent parser for XML that just converts XML to fluentd record fields'
+  gem.summary = 'Fluent filter for XML'
+  gem.description = 'Fluent filter for XML that just converts specified fields with XML to hashes'
   gem.email = 'c_sharp@mail.ru'
   gem.authors = ['Yaroslav Lukyanov']
   # dependencies defined in Gemfile
@@ -34,7 +34,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "fluent-plugin-xml-simple-parser #{version}"
+  rdoc.title = "fluent-plugin-xml-simple-filter #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
