@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "fluent-plugin-cassandra-driver.gemspec",
     "fluent-plugin-xml-parser.gemspec",
-    "lib/fluent/plugin/parser_xml.rb"
+    "lib/fluent/plugin/parser_xml_simple.rb"
   ]
   s.homepage = "https://github.com/CSharpRU/fluent-plugin-xml-simple-parser".freeze
   s.licenses = ["BSD-3-Clause".freeze]

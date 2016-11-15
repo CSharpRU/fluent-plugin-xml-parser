@@ -3,7 +3,7 @@ require 'nori'
 module Fluent
   module Plugin
     class XmlParser < Parser
-      Fluent::Plugin.register_parser('parser_xml', self)
+      Fluent::Plugin.register_parser('parser_xml_simple', self)
 
       def configure(conf)
         super
