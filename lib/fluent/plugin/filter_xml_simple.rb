@@ -4,7 +4,7 @@ module Fluent
   class XmlFilter < Filter
     Fluent::Plugin.register_filter('xml_simple', self)
 
-    config_param :fields, :string, default: nil
+    config_param :fields, :string
 
     def configure(conf)
       super
@@ -31,7 +31,7 @@ module Fluent
     def filter(tag, time, record)
       self.fields.each { |field|
         if record.key?(field)
-          record[field] = @parser.parse(xml)
+          record[field] = @parser.parse(record[field])
         end
       }
 
