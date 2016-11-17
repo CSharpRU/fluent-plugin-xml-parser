@@ -7,6 +7,7 @@ module Fluent
     config_param :fields, :string
 
     config_param :try_convert_times, :bool, :default => true # try to convert values in hash to times
+    config_param :time_format, :string, :default => '%F'
     config_param :field_name_postfix, :string, :default => 'hash' # if set will create hash in new field with postfix (xml => xml_hash)
 
     def configure(conf)
@@ -42,11 +43,7 @@ module Fluent
 
           hash = @parser.parse(record[field])
 
-          if try_convert_times
-            hash = convert_times(hash)
-          end
-
-          record[field_name] = hash
+          record[field_name] = self.try_convert_times ? convert_times(hash) : hash
         end
       }
 
@@ -56,7 +53,11 @@ module Fluent
     private
 
     def convert_times(hash)
-      hash.each { |key, value| value.class == Hash ? convert_times(value) : try_to_convert(value) { |x| Time.parse(x) } }
+      hash.each { |key, value|
+        value.class == Hash ? convert_times(value) : try_to_convert(value) { |x|
+          self.time_format ? Time.strptime(x, self.time_format) : Time.parse(x)
+        }
+      }
     end
 
     def try_to_convert(value, &block)
