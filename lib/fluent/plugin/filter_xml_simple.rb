@@ -57,7 +57,7 @@ module Fluent
 
     def convert_times(hash)
       hash.each { |key, value|
-        value.class == Hash ? convert_times(value) : try_to_convert(value) { |x|
+        hash[key] = value.class == Hash ? convert_times(value) : try_to_convert(value) { |x|
           self.time_format ? Time.strptime(x, self.time_format) : Time.parse(x)
         }
       }
