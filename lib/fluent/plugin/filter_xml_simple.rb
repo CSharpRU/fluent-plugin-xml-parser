@@ -56,11 +56,13 @@ module Fluent
     private
 
     def convert_times(hash)
-      hash.each { |key, value|
-        hash[key] = value.class == Hash ? convert_times(value) : try_to_convert(value) { |x|
+      hash.map { |key, value|
+        new_value = value.class == Hash ? convert_times(value) : try_to_convert(value) { |x|
           (self.time_format ? Time.strptime(x, self.time_format) : Time.parse(x)).to_i
         }
-      }
+        
+        [key, new_value]
+      }.to_h
     end
 
     def try_to_convert(value, &block)
