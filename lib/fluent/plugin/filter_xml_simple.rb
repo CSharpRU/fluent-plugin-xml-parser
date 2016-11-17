@@ -61,8 +61,8 @@ module Fluent
 
     def try_to_convert(value, &block)
       block.call(value)
-    rescue ArgumentError
-      value
+    rescue Exception => e
+      $log.debug "Cannot convert time: #{e.message}\nTrace: #{e.backtrace.to_s}"
     end
   end
 end
