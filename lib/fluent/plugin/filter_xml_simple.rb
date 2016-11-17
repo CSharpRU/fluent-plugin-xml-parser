@@ -58,7 +58,7 @@ module Fluent
     def convert_times(hash)
       hash.each { |key, value|
         hash[key] = value.class == Hash ? convert_times(value) : try_to_convert(value) { |x|
-          EventTime.from_time(self.time_format ? Time.strptime(x, self.time_format) : Time.parse(x))
+          Fluent::EventTime.from_time(self.time_format ? Time.strptime(x, self.time_format) : Time.parse(x))
         }
       }
     end
