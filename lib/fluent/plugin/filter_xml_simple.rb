@@ -67,6 +67,8 @@ module Fluent
       block.call(value)
     rescue Exception => e
       $log.debug "Cannot convert time: #{e.message}\nTrace: #{e.backtrace.to_s}"
+
+      value
     end
   end
 end
