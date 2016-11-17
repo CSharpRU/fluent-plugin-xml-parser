@@ -19,7 +19,7 @@ module Fluent
     def start
       super
 
-      @parser = Nori.new
+      @parser = Nori.new(:advanced_typecasting => false)
     end
 
     def shutdown
