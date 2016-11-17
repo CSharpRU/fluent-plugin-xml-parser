@@ -42,8 +42,11 @@ module Fluent
           end
 
           hash = @parser.parse(record[field])
+          hash = self.try_convert_times ? convert_times(hash) : hash
 
-          record[field_name] = self.try_convert_times ? convert_times(hash) : hash
+          $log.debug "Hash from XML: #{hash.to_json}"
+
+          record[field_name] = hash
         end
       }
 
