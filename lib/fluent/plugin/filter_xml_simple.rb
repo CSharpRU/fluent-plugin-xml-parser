@@ -60,7 +60,7 @@ module Fluent
         new_value = value.class == Hash ? convert_times(value) : try_to_convert(value) { |x|
           (self.time_format ? Time.strptime(x, self.time_format) : Time.parse(x)).to_i
         }
-        
+
         [key, new_value]
       }.to_h
     end
