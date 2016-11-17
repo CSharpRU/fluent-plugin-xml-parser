@@ -5,9 +5,9 @@ module Fluent
     Fluent::Plugin.register_filter('xml_simple', self)
 
     config_param :fields, :string
-    config_param :time_format, :string
 
     config_param :try_convert_times, :bool, :default => true # try to convert values in hash to times
+    config_param :time_format, :string, :default => nil
     config_param :field_name_postfix, :string, :default => 'hash' # if set will create hash in new field with postfix (xml => xml_hash)
 
     def configure(conf)
